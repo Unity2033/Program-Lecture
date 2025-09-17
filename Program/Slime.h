@@ -5,5 +5,7 @@ class Slime : public Monster
 {
 public:
 	Slime();
+
+	void Describe();
 };
 
