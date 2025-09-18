@@ -1,8 +1,6 @@
 #include "Golem.h"
 
-#include <iostream>
-
-using namespace std;
+#include "stdafx.h"
 
 Golem::Golem()
 {
@@ -15,4 +13,9 @@ Golem::Golem()
 void Golem::Describe()
 {
 	cout << "A large stone monster. Slow, but tough and powerful. \n" << endl;
+}
+
+Golem::~Golem()
+{
+	cout << "Destroy Golem" << endl;
 }

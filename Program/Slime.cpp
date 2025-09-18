@@ -1,8 +1,6 @@
 #include "Slime.h"
 
-#include <iostream>
-
-using namespace std;
+#include "stdafx.h"
 
 Slime::Slime()
 {
@@ -16,4 +14,9 @@ void Slime::Describe()
 {
 	cout << "A squishy jelly monster.Weak, but annoyingly clingy. \n" << endl;
 
+}
+
+Slime::~Slime()
+{
+	cout << "Destroy Slime" << endl;
 }

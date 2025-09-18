@@ -1,8 +1,6 @@
 #include "Skeleton.h"
 
-#include <iostream>
-
-using namespace std;
+#include "stdafx.h"
 
 Skeleton::Skeleton()
 {
@@ -15,4 +13,9 @@ Skeleton::Skeleton()
 void Skeleton::Describe()
 {
 	cout << "A skeleton monster. Wields a weapon, but has weak defense. \n" << endl;
+}
+
+Skeleton::~Skeleton()
+{
+	cout << "Destroy Skeleton" << endl;
 }
