@@ -1,3 +1,4 @@
-﻿  Transform.cpp
-C:\Users\Administrator\Desktop\Game-Program\Program\Transform.cpp(7,12): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  Program.cpp
+  Vector2.cpp
+C:\Users\Administrator\Desktop\Game-Program\Program\Vector2.cpp(14,1): warning C4172: 지역 변수 또는 임시: vector2의 주소를 반환하고 있습니다.
   Program.vcxproj -> C:\Users\Administrator\Desktop\Game-Program\Program\x64\Debug\Program.exe
