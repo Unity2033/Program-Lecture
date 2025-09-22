@@ -7,7 +7,18 @@ private:
 public:
 	Vector2(int x, int y);
 
-	Vector2 & operator + (const Vector2 & clone);
+	const int & X();
+	const int & Y();
 
+	const Vector2 & operator + (const Vector2 & clone);
+	const Vector2 & operator - (const Vector2 & clone);
+	const Vector2 & operator * (const Vector2 & clone);
+	const Vector2 & operator / (const Vector2 & clone);
+
+	const Vector2 & operator ++();
+	const Vector2 & operator --();
+
+	const Vector2 & operator ++(int);
+	const Vector2 & operator --(int);
 };
 
