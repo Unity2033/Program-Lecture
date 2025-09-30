@@ -1,54 +1,37 @@
 ﻿#include "stdafx.h"
-#include <vector>
-#include <list>
+#include <stack>
+#include <queue>
 
 int main()
 {
-#pragma region 선형 컨테이너
-	// 데이터를 선형으로 저장하며, 특별한 제약이나 규칙이 없는 컨테이너입니다.
+#pragma region 컨테이너 어댑터
+	// 기존 컨테이너의 인터페이스를 제한하여 만든 기능이
+	// 제한되거나 변경된 컨테이너입니다.
 
-#pragma region vector container
+#pragma region stack container
 
-	// vector<int> vector;
-	// 
-	// vector.reserve(8);
-	// 
-	// vector.push_back(10);
-	// vector.push_back(20);
-	// vector.push_back(30);
-	// vector.push_back(40);
-	// vector.push_back(50);
-	// 
-	// vector.pop_back();
-	// 
-	// for (int i = 0; i < vector.size(); i++)
-	// {
-	// 	cout << vector[i] << endl;
-	// }
-	// 
-	// vector.clear();
-	// 
-	// cout << "vector의 size 값 : " << vector.size() << endl;
-	// cout << "vector의 capacity 값 : " << vector.capacity() << endl;
+	//	std::stack<int> stack;
+	//	
+	//	stack.push(10);
+	//	stack.push(20);
+	//	stack.push(30);
+	//	stack.push(40);
+	//	stack.push(50);
+	//	
+	//	while (stack.empty() == false)
+	//	{
+	//		cout << stack.top() << endl;
+	//	
+	//		stack.pop();
+	//	}
 
 #pragma endregion
 
-#pragma region list container
+#pragma region queue container
 
-	std::list<int> list;
+	std::queue<int> queue;
 
-	list.push_back(20); 
-	list.push_back(30);
-
-	list.push_front(10);
-
-	list.pop_front();
-
-	list.push_front(1);
-
-	list.remove(20);
-
-
+	
 
 #pragma endregion
 
