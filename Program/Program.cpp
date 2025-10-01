@@ -1,41 +1,33 @@
 ﻿#include "stdafx.h"
-#include <stack>
-#include <queue>
+#include <unordered_set>
 
 int main()
 {
-#pragma region 컨테이너 어댑터
-	// 기존 컨테이너의 인터페이스를 제한하여 만든 기능이
-	// 제한되거나 변경된 컨테이너입니다.
+#pragma region 연관 컨테이너 
+	// 특정한 방식으로 데이터 저장하고 검색하는 컨테이너입니다.
 
-#pragma region stack container
+	std::unordered_set<const char*> unordered_set;
 
-	//	std::stack<int> stack;
-	//	
-	//	stack.push(10);
-	//	stack.push(20);
-	//	stack.push(30);
-	//	stack.push(40);
-	//	stack.push(50);
-	//	
-	//	while (stack.empty() == false)
-	//	{
-	//		cout << stack.top() << endl;
-	//	
-	//		stack.pop();
-	//	}
+	unordered_set.reserve(16);
 
-#pragma endregion
+	unordered_set.max_load_factor(2.0);
 
-#pragma region queue container
+	unordered_set.insert("Doran’s Ring");
+	unordered_set.insert("Doran’s Blade");
+	unordered_set.insert("Doran’s Shield");
 
-	std::queue<int> queue;
+	unordered_set.insert("Frozen Heart");
+	unordered_set.insert("Sterak’s Gage");
+	unordered_set.insert("Randuin’s Omen");
 
-	
+	unordered_set.insert("Knight’s Vow");
+	unordered_set.insert("Essence Reaver");
+	unordered_set.insert("Liandry’s Torment");
 
-#pragma endregion
-
-
+	unordered_set.insert("Liandry’s Torment");
+										
+	cout << "Load Factor : " << unordered_set.load_factor() << endl;
+	cout << "Bucket Count : " << unordered_set.bucket_count() << endl;
 
 #pragma endregion
 
