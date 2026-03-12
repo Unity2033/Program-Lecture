@@ -1,4 +1,4 @@
-#include "../Program/stdafx.h"
+#include "stdafx.h"
 #include "Dexterity.h"
 
 void Dexterity::Enhance()

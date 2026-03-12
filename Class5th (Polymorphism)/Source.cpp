@@ -2,7 +2,7 @@
 #include "Strength.h"
 #include "Dexterity.h"
 #include "Wisdom.h"
-#include "../Program/stdafx.h"
+#include "stdafx.h"
 
 int main()
 {

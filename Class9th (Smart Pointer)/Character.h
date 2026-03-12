@@ -1,5 +1,5 @@
 #pragma once
-#include "../Program/stdafx.h"
+#include "stdafx.h"
 
 class Character
 {

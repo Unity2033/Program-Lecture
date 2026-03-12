@@ -1,4 +1,4 @@
-﻿#include "../Program/stdafx.h"
+﻿#include "stdafx.h"
 #include <vector>
 #include <list>
 #include <deque>

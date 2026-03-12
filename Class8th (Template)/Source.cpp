@@ -1,5 +1,5 @@
-﻿#include "../Program/stdafx.h"
-#include "Language.h"
+﻿#include "stdafx.h"
+#include "Factorial.h"
 #include "Container.h"
 
 template<typename T>
@@ -9,9 +9,9 @@ bool Same(T left, T right)
 }
 
 template<>
-bool Same(Language left, Language right)
+bool Same(Factorial first, Factorial second)
 {
-	return left.Name() == right.Name();
+	return first.Value() == second.Value();
 }
 
 int main()
@@ -33,13 +33,10 @@ int main()
 	// 특정 자료형에 대해 다르게 처리하고 싶은 경우
 	// 특정한 자료형만 다른 형식으로 동작시키는 기능입니다.
 
-	// Language java;
-	// Language rust;
-	// 
-	// java.Initialize("function");
-	// rust.Initialize("method");
-	// 
-	// cout << Same(java, rust) << endl;
+	Factorial factorial(5);
+	Factorial expected_factorial(3);
+	 
+	 cout << Same(factorial, expected_factorial) << endl;
 
 #pragma endregion
 

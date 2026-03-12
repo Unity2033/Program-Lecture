@@ -1,4 +1,4 @@
-﻿#include "../Program/stdafx.h"
+﻿#include "stdafx.h"
 #include "Material.h"
 #include "Resource.h"
 #include "Character.h"
