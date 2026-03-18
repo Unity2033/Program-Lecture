@@ -10,16 +10,18 @@ private:
 	{
 		T data;
 		Node * next;
+		Node * previous;
 	};
 
 	int size;
-
 	Node * head;
+	Node * tail;
 public:
 	List()
 	{
 		size = 0;
 		head = nullptr;
+		tail = nullptr;
 	}
 
 	void push_front(T data)
@@ -27,20 +29,23 @@ public:
 		Node * newNode = new Node;
 
 		newNode->data = data;
+		newNode->next = nullptr;
+		newNode->previous = nullptr;
 
 		if (head == nullptr)
 		{
 			head = newNode;
-
-			newNode->next = nullptr;
+			tail = newNode;
 		}
 		else
 		{
+			head->previous = newNode;
+
 			newNode->next = head;
 
 			head = newNode;
 		}
-	
+
 		size++;
 	}
 
@@ -53,11 +58,21 @@ public:
 		else
 		{
 			Node * deleteNode = head;
-		  
-			head = deleteNode->next;
+
+			if (head == tail)
+			{
+				head = nullptr;
+				tail = nullptr;
+			}
+			else
+			{
+				deleteNode->next->previous = nullptr;
+
+				head = head->next;
+			}
 
 			delete deleteNode;
-		
+
 			size--;
 		}
 	}
@@ -67,65 +82,29 @@ public:
 		Node * newNode = new Node;
 
 		newNode->data = data;
-
 		newNode->next = nullptr;
+		newNode->previous = nullptr;
 
-		if (head == nullptr)
+		if (tail == nullptr)
 		{
 			head = newNode;
+			tail = newNode;
 		}
 		else
 		{
-			Node * currentNode = head;
+			tail->next = newNode;
 
-			while (currentNode->next != nullptr)
-			{
-				currentNode = currentNode->next;
-			}
+			newNode->previous = tail;
 
-			currentNode->next = newNode;
+			tail = newNode;
 		}
 
 		size++;
 	}
 
-	void pop_back()
-	{
-		if (head == nullptr)
-		{
-			cout << "linked list is empty" << endl;
-		}
-		else
-		{
-			Node * deleteNode = head;
-			Node* previousNode = nullptr;
-
-			if (size == 1)
-			{
-				head = deleteNode->next;
-			}
-			else
-			{
-				while (deleteNode->next != nullptr)
-				{
-					previousNode = deleteNode;
-
-					deleteNode = deleteNode->next;
-				}
-
-				previousNode->next = deleteNode->next;
-			}
-
-			delete deleteNode;
-
-			size--;
-		}
-
-	}
-
 	const bool & empty()
 	{
-		return (head == nullptr);
+		return head == nullptr;
 	}
 
 	~List()
@@ -145,12 +124,11 @@ int main()
 	list.push_front(5);
 
 	list.push_back(20);
+	list.push_back(30);
 
 	list.pop_front();
 	list.pop_front();
-	list.pop_back();
-	list.pop_back();
+	list.pop_front();
 
-	cout << list.empty() << endl;
 }
 
