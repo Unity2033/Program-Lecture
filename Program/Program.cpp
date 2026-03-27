@@ -2,104 +2,58 @@
 
 using namespace std;
 
-template <typename T>
-class PriorityQueue
-{	
+template <typename KEY, typename VALUE>
+class HashTable
+{
 private:
-	int index;
+	struct Node
+	{
+		KEY key;
+		VALUE value;
+
+		Node * next;
+	};
+
+	struct Bucket
+	{
+		int count;
+		Node * head;
+	};
+
+	int size;
 	int capacity;
 
-	T * container;
+	Bucket * bucket;
+
 public:
-	PriorityQueue()
+	HashTable()
 	{
-		index = 0;
-		capacity = 0;
-		container = nullptr;
-	}
+		size = 0;
+		capacity = 8;
 
-	void resize(int newSize)
-	{
-		capacity = newSize;
-
-		T * temporary = new T[capacity];
+		bucket = new Bucket[capacity];
 
 		for (int i = 0; i < capacity; i++)
 		{
-			temporary[i] = NULL;
-		}
-
-		for (int i = 0; i < index; i++)
-		{
-			temporary[i] = container[i];
-		}
-
-		delete [ ] container;
-
-		container = temporary;
-	}
-
-	void push(T data)
-	{
-		if (capacity <= 0)
-		{
-			resize(1);
-		}
-		else if (index >= capacity)
-		{
-			resize(capacity * 2);
-		}
-
-		container[index++] = data;
-
-		int child = index - 1;
-		int parent = (child - 1) / 2;
-
-		while (child > 0)
-		{
-			if (container[parent] < container[child])
-			{
-				std::swap(container[parent], container[child]);
-			}
-
-			child = parent;
-
-			parent = (child - 1) / 2;
+			bucket[i].head = nullptr;
+			bucket[i].count = 0;
 		}
 	}
 
-	const bool & empty()
+	template <typename KEY>
+	unsigned int hash_function(KEY key)
 	{
-		return index <= 0;
+		return (unsigned int)key % capacity;
 	}
 
-	const int & size()
-	{
-		return index;
-	}
-
-	const T & top()
-	{
-		return container[0];
-	}
-
-	~PriorityQueue()
-	{
-		delete[] container;
-	}
 };
 
 int main()
 {
-	PriorityQueue<int> priorityQueue;
+	HashTable<const char *, int> hashtable;
 
-	priorityQueue.push(10);
-	priorityQueue.push(50);
-	priorityQueue.push(70);
-	priorityQueue.push(5);
-	priorityQueue.push(30);
+	cout << hashtable.hash_function("Bami’s Cinder");
 
-	cout << "Priority Queue is Size : " << priorityQueue.size() << endl;
 
 	return 0;
 }
