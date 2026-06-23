@@ -1,83 +1,33 @@
 ﻿#include <iostream>
 
+#define SIZE 4
+
 using namespace std;
 
 template <typename T>
-class Stack
+class Queue
 {
 private:
-	int highset;
-	int capacity;
+	int m_rear;
+	int m_front;
 
-	T * container;
+	T container[SIZE];
 public:
-	Stack()
+	Queue()
 	{
-		highset = -1;
-		capacity = 0;
+		m_rear = SIZE - 1;
+		m_front = SIZE - 1;
 
-		container = nullptr;
-	}
-
-	void resize(int newSize)
-	{
-		capacity = newSize;
-
-		T * temporary = new T[capacity];
-
-		for (int i = 0; i < capacity; i++)
+		for (int i = 0; i < SIZE; i++)
 		{
-			temporary[i] = NULL;
-		}
-
-		for (int i = 0; i < highset + 1; i++)
-		{
-			temporary[i] = container[i];
-		}
-
-		delete [ ] container;
-
-		container = temporary;
-	}
-
-	void push(T data)
-	{
-		if (capacity <= 0)
-		{
-			resize(1);
-		}
-		else if (highset + 1 >= capacity)
-		{
-			resize(capacity * 2);
-		}
-
-		container[++highset] = data;
-	}
-
-	void pop()
-	{
-		if (highset <= -1)
-		{
-			cout << "stack is empty" << endl;
-		}
-		else
-		{
-			container[highset--] = NULL;
+			container[i] = NULL;
 		}
 	}
-
 };
 
 int main()
-{ 
-	Stack<int> stack;
-
-	stack.push(10);
-	stack.push(20);
-
-	stack.pop();
-	stack.pop();
-	stack.pop();
+{ 	
+	Queue<int> queue;
 
 	return 0;
 }
