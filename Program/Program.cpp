@@ -2,127 +2,59 @@
 
 using namespace std;
 
-template <typename T>
-class PriorityQueue
+template <typename KEY, typename VALUE>
+class HashTable
 {
 private:
-	int index;
+	struct Node
+	{
+		KEY key;
+		VALUE value;
+
+		Node * next;
+	};
+
+	struct Bucket
+	{
+		int count;
+		Node * head;
+	};
+
+	int size;
 	int capacity;
 
-	T * container;
+	Bucket * bucket;
+
 public:
-	PriorityQueue()
+	HashTable()
 	{
-		index = 0;
-		capacity = 0;
+		size = 0;
+		capacity = 8;
 
-		container = nullptr;
-	}
-
-	void resize(int newSize)
-	{
-		capacity = newSize;
-
-		T * temporary = new T[capacity];
+		bucket = new Bucket[capacity];
 
 		for (int i = 0; i < capacity; i++)
 		{
-			temporary[i] = NULL;
+			bucket[i].head = nullptr;
+			bucket[i].count = 0;
 		}
-
-		for (int i = 0; i < index; i++)
-		{
-			temporary[i] = container[i];
-		}
-
-		delete [ ] container;
-
-		container = temporary;
 	}
 
-	void push(T data)
+	template <typename KEY>
+	unsigned int hash_function(KEY key)
 	{
-		if (capacity <= 0)
-		{
-			resize(1);
-		}
-		else if (index >= capacity)
-		{
-			resize(capacity * 2);
-		}
-
-		container[index++] = data;
-
-		int child = index - 1;
-
-		int parent = (child - 1) / 2;
-
-		while (child > 0)
-		{
-			if (container[parent] < container[child])
-			{
-				std::swap(container[parent], container[child]);
-			}
-
-			child = parent;
-
-			parent = (child - 1) / 2;
-		}
+		return (unsigned int)key % capacity;
 	}
 
-	void pop()
-	{
-		if (index <= 0)
-		{
-			cout << "priority queue is empty" << endl;
-		}
-		else
-		{
-			container[0] = container[--index];
-			
-			container[index] = NULL;
-
-			int parent = 0;
-			int child = parent * 2 + 1;
-
-			while (child < index) 
-			{
-				child = parent * 2 + 1;
-
-				if (container[child] < container[child + 1])
-				{
-					child++;
-				}
-
-				if (container[child] < container[parent])
-				{
-					break;
-				}
-				else
-				{
-					std::swap(container[child], container[parent]);
-
-					parent = child;
-				}
-			}
-		}
-	}
+	
 };
 
 int main()
 { 	
-	PriorityQueue<int> priorityQueue;
+	HashTable<const char *, int> hashTable;
 
-	priorityQueue.push(10);
-	priorityQueue.push(20);
-	priorityQueue.push(25);
-	priorityQueue.push(30);
-
-	priorityQueue.pop();
-	priorityQueue.pop();
-	priorityQueue.pop();
-	priorityQueue.pop();
-	priorityQueue.pop();
+	cout << hashTable.hash_function("League of Legend") << endl;
+	cout << hashTable.hash_function("Soraka") << endl;
 
 	return 0;
 }
