@@ -46,15 +46,59 @@ public:
 		return (unsigned int)key % capacity;
 	}
 
-	
+	template<>
+	unsigned int hash_function(const char * key)
+	{
+		unsigned int sum = 0;
+
+		for (int i = 0; *key != '\0'; i++)
+		{
+			sum += key[i];
+
+			key = key + 1;
+		}
+
+		return sum % capacity;
+	}
+
+	void insert(KEY key, VALUE value)
+	{
+		int hashIndex = hash_function(key);
+
+		Node * newNode = new Node;
+		 
+		newNode->key = key;
+
+		newNode->value = value;
+
+		newNode->next = nullptr;
+
+		if (bucket[hashIndex].count == 0)
+		{
+			bucket[hashIndex].head = newNode;
+		}
+		else
+		{
+			newNode->next = bucket[hashIndex].head;
+
+			bucket[hashIndex].head = newNode;
+		}
+
+		bucket[hashIndex].count++;
+
+		size++;
+	}
+
 };
 
 int main()
 { 	
 	HashTable<const char *, int> hashTable;
 
-	cout << hashTable.hash_function("League of Legend") << endl;
-	cout << hashTable.hash_function("Soraka") << endl;
+	hashTable.insert("Abyssal Mask", 3000);
+	hashTable.insert("Bami's Cinder", 1000);
+
+	hashTable.insert("Chain Vest", 800);
 
 	return 0;
 }
