@@ -73,6 +73,70 @@ public:
 
 	}
 
+	void erase(T data)
+	{
+		Node * currentNode = root;
+		Node * parentNode = nullptr;
+
+		while (currentNode != nullptr && currentNode->data != data)
+		{
+			parentNode = currentNode;
+
+			if (currentNode->data > data)
+			{
+				currentNode = currentNode->left;
+			}
+			else
+			{
+				currentNode = currentNode->right;
+			}
+		}
+
+		if (currentNode == nullptr)
+		{
+			cout << "the data does not exist" << endl;
+
+			return;
+		}
+		else if (currentNode->left == nullptr && currentNode->right == nullptr)
+		{
+			if (parentNode != nullptr)
+			{
+				if (parentNode->left == currentNode)
+				{
+					parentNode->left = nullptr;
+				}
+				else
+				{
+					parentNode->right = nullptr;
+				}
+			}
+			else
+			{
+				root = nullptr;
+			}
+
+			delete currentNode;
+		}
+
+	}
+
+	void inorder(Node * root)
+	{
+		if (root != nullptr)
+		{
+			inorder(root->left);
+
+			cout << root->data << " ";
+
+			inorder(root->right);
+		}
+	}
+
+	void render()
+	{
+		inorder(root);
+	}
 };
 
 int main()
@@ -85,6 +149,10 @@ int main()
 	tree.insert(22);
 	tree.insert(17);
 	tree.insert(19);
+
+	tree.erase(19);
+
+	tree.render();
 
 	return 0;
 }
